@@ -1,5 +1,4 @@
-<?php
-/*
+
 TOE1 - Tic-Tac-Toe (I)
 
 Description:
@@ -56,5 +55,4 @@ Notes:
   - The number of X and O marks should follow the game rules (X starts first).
   - Only one player can win at a time.
   - Validate that the number of moves and the winning conditions align with the sequence of a legitimate game.
-*/
-?>
+

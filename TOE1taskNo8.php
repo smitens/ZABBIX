@@ -1,6 +1,5 @@
 <?php
 
-
 $input = file_get_contents('php://stdin');
 $lines = explode("\n", trim($input));
 
