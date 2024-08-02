@@ -35,16 +35,16 @@ while ($index < count($lines)) {
         [2, 4, 6]
     ];
 
-    $grid_arr = str_split($grid);
+    $gridArr = str_split($grid);
 
     $xWins = false;
     $oWins = false;
 
     foreach ($wins as $win) {
-        if ($grid_arr[$win[0]] === 'X' && $grid_arr[$win[1]] === 'X' && $grid_arr[$win[2]] === 'X') {
+        if ($gridArr[$win[0]] === 'X' && $gridArr[$win[1]] === 'X' && $gridArr[$win[2]] === 'X') {
             $xWins = true;
         }
-        if ($grid_arr[$win[0]] === 'O' && $grid_arr[$win[1]] === 'O' && $grid_arr[$win[2]] === 'O') {
+        if ($gridArr[$win[0]] === 'O' && $gridArr[$win[1]] === 'O' && $gridArr[$win[2]] === 'O') {
             $oWins = true;
         }
     }
