@@ -1,12 +1,36 @@
 <?php
 
+function checkWinner($gridArr, $wins, $player):bool
+{
+    foreach ($wins as $win) {
+        if ($gridArr[$win[0]] === $player && $gridArr[$win[1]] === $player && $gridArr[$win[2]] === $player) {
+            return true;
+        }
+    }
+    return false;
+}
+
 $input = file_get_contents('php://stdin');
 $lines = explode("\n", trim($input));
+
+$wins = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+];
+
+$N = intval(array_shift($lines));
 
 $results = [];
 $index = 0;
 
-while ($index < count($lines)) {
+while ($index < count($lines) && $N > 0) {
+
     $grid = '';
     for ($i = 0; $i < 3; $i++) {
         $grid .= str_replace(' ', '', $lines[$index++]);
@@ -21,33 +45,14 @@ while ($index < count($lines)) {
 
     if ($oCount > $xCount || $xCount > $oCount + 1) {
         $results[] = 'no';
+        $N--;
         continue;
     }
 
-    $wins = [
-        [0, 1, 2],
-        [3, 4, 5],
-        [6, 7, 8],
-        [0, 3, 6],
-        [1, 4, 7],
-        [2, 5, 8],
-        [0, 4, 8],
-        [2, 4, 6]
-    ];
-
     $gridArr = str_split($grid);
 
-    $xWins = false;
-    $oWins = false;
-
-    foreach ($wins as $win) {
-        if ($gridArr[$win[0]] === 'X' && $gridArr[$win[1]] === 'X' && $gridArr[$win[2]] === 'X') {
-            $xWins = true;
-        }
-        if ($gridArr[$win[0]] === 'O' && $gridArr[$win[1]] === 'O' && $gridArr[$win[2]] === 'O') {
-            $oWins = true;
-        }
-    }
+    $xWins = checkWinner($gridArr, $wins, 'X');
+    $oWins = checkWinner($gridArr, $wins, 'O');
 
     if ($xWins && $oWins) {
         $results[] = 'no';
@@ -58,8 +63,7 @@ while ($index < count($lines)) {
     } else {
         $results[] = 'yes';
     }
+
+    $N--;
 }
 echo implode("\n", $results) . "\n";
-
-
-
